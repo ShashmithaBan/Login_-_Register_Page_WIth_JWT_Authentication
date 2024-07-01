@@ -48,7 +48,7 @@ public class JwtService {
                 .parseSignedClaims(token)
                 .getPayload();
     }
-    private String generateToken(User user) {
+    public String generateToken(User user) {
         String token = Jwts
                 .builder()
                 .subject(user.getUsername())

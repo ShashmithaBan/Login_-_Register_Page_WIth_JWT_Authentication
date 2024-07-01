@@ -17,7 +17,7 @@ public class JwtService {
 
     private final String SECRET_KEY = "2de63741cb6ff2f6d2575f52be8d8a29076ffa7613c07662f5e33fcb74d4f3a3";
 
-   
+
     public String extractUserName(String token){
 
         return extractClaim(token,Claims::getSubject);

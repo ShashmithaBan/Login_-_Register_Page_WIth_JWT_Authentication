@@ -1,13 +1,33 @@
-import React from 'react'
+'use client'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+
+import React, { useState } from 'react'
+
+
+
+const initialValues = {
+  firstName:'',
+  lastName:'',
+  username:'',
+  password:''
+}
+
 
 export default function page() {
-  const [username, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const[formValues , setFormValues] = useState("")
 
+  const handleChange = (e) =>{
+    const {name , value} = e.target;
+    setFormValues({
+      ...formValues,
+      [name]:value,
+    })
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('...', username, password);
+    console.log('...', formValues);
 
   };
 
@@ -19,22 +39,38 @@ export default function page() {
           <h1 className="text-3xl text-white font-semibold text-center">Register</h1>
           <Input
             type="text"
+            name="firstName"
+            placeholder="First Name"
+            value={formValues.firstName}
+            onChange={handleChange}
+            required
+          />
+          <Input
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={formValues.lastName}
+            onChange={handleChange}
+            required
+          />
+          <Input
+            type="text"
+            name="username"
             placeholder="User Name"
-            value={username}
-            onChange={(e) => setUserName(e.target.value)}
+            value={formValues.username}
+            onChange={handleChange}
             required
           />
           <Input
             type="password"
+            name="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formValues.password}
+            onChange={handleChange}
             required
           />
-          <Button fullWidth type="submit">Login</Button>
-          <p className="text-white text-center">
-            Don't have an account? <button type="button"  >Register</button>
-          </p>
+          <Button fullWidth type="submit">Register</Button>
+          
         </form>
 
         <video 
